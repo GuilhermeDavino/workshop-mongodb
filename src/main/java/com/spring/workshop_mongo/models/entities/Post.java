@@ -28,12 +28,13 @@ public class Post {
 		
 	}
 
-	public Post(String id, Instant moment, String title, String body) {
+	public Post(String id, Instant moment, String title, String body, Author author) {
 		
 		this.id = id;
 		this.moment = moment;
 		this.title = title;
 		this.body = body;
+		this.author = author;
 	}
 
 	public String getId() {
