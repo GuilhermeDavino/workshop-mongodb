@@ -28,6 +28,11 @@ public class UserService {
 		Optional<User> result = userRepository.findById(id);
 		User entity = result.orElseThrow(() -> new ResourceNotFoundException("Recurso não encontrado!"));
 		return new UserDTO(entity);
-		
+	}
+	
+	public UserDTO insert(UserDTO dto) {
+		User entity = new User(dto);
+		entity = userRepository.insert(entity);
+		return new UserDTO(entity);
 	}
 }
