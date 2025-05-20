@@ -43,6 +43,12 @@ public class UserService {
 		
 	}
 	
+	
+	public void delete(String id) {
+		getEntityById(id);
+		userRepository.deleteById(id);
+	}
+	
 	public User getEntityById(String id) {
 		Optional<User> result = userRepository.findById(id);
 		User entity = result.orElseThrow(() -> new ResourceNotFoundException("Recurso não encontrado!"));
