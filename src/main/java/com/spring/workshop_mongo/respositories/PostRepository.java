@@ -1,5 +1,6 @@
 package com.spring.workshop_mongo.respositories;
 
+import java.time.Instant;
 import java.util.List;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
@@ -15,4 +16,7 @@ public interface PostRepository extends MongoRepository<Post, String> {
 	List<Post> searchTitle(String title);
 
 	List<Post> findByTitleContainingIgnoreCase(String title);
+	
+	@Query("{$and: [{'title': { $regex: ?0, $options: 'i'}}, {'moment': {$gte: ?1}}, {'moment': {$lte: ?2} } ] }")
+	List<Post> fullSearch(String title, Instant start, Instant end);
 }
