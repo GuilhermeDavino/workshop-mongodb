@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.spring.workshop_mongo.models.dtos.PostDTO;
 import com.spring.workshop_mongo.models.embedded.Author;
 import com.spring.workshop_mongo.models.embedded.Comment;
 
@@ -27,6 +28,7 @@ public class Post {
 	public Post() {
 		
 	}
+	
 
 	public Post(String id, Instant moment, String title, String body, Author author) {
 		
@@ -36,6 +38,16 @@ public class Post {
 		this.body = body;
 		this.author = author;
 	}
+	
+	public Post(PostDTO dto) {
+			
+			this.id = dto.getId();
+			this.moment = dto.getMoment();
+			this.title = dto.getTitle();
+			this.body = dto.getBody();
+			this.author = dto.getAuthor();
+			this.comments.addAll(dto.getComments());
+		}
 
 	public String getId() {
 		return id;
